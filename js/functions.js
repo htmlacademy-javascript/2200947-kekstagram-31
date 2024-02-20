@@ -2,11 +2,11 @@ const checkLengthString = (string = '', length = 1) => string.length <= length;
 
 function checkPalindrome(str) {
   const newStr = str.replaceAll(' ', '').toUpperCase();
-  for (let i = 0; i <= newStr.length/2; i++) {
+  for (let i = 0; i <= newStr.length / 2; i++) {
     if (newStr[i] !== newStr.at(-i - 1)) {
       return false;
-      }
     }
+  }
   return true;
 }
 
