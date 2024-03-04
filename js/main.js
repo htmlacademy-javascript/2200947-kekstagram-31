@@ -18,38 +18,52 @@ const NAMES = [
 ];
 
 const PHOTOS_NAMES = [
-  'Море',
-  'Море утром',
-  'Море вечером',
-  'Море днем',
-  'Море ночью',
-  'Горы',
-  'Горы утром',
-  'Горы вечером',
-  'Горы днем',
-  'Горы ночью',
-  'Лес',
-  'Лес утром',
-  'Лес вечером',
-  'Лес днем',
-  'Лес ночью',
-  'Поле',
-  'Поле утром',
-  'Поле вечером',
-  'Поле днем',
-  'Поле ночью',
-  'Озеро',
-  'Озеро утром',
-  'Озеро вечером',
-  'Озеро днем',
-  'Озеро ночью'
+  'Пруд с высоты птичьего полета',
+  'Указатель на пляж',
+  'Прилив',
+  'Девушка на пляже',
+  'Блюдо азиатской кухни',
+  'Черный автомобиль',
+  'Клубничный дессерт',
+  'Морс в двух стаканах',
+  'Самолет над пляжем',
+  'Обувница',
+  'Песчаный пляж',
+  'Белый ауди',
+  'Салат по-азиатски',
+  'КотоРолл',
+  'Модные тапочки',
+  'Над облаками',
+  'Симфонический оркестр',
+  'Ретро автомобиль',
+  'Не спится',
+  'Пальмы',
+  'Салат с лаймом',
+  'Закат над морем',
+  'Краб',
+  'Концерт',
+  'Сафари на джипе'
 ];
 
 const MIN_LIKES = 15;
 const MAX_LIKES = 200;
+const PHOTO_POSTS = 25;
+const MAX_COMMENTS = 30;
+const MIN_NUMBER_AVATARS = 1;
+const MAX_NUMBER_AVATARS = 6;
 
-let id = 0;
-let photoId = 0;
+const createId = () => {
+  let counter = 0;
+  return function () {
+    counter++;
+    return counter;
+  };
+};
+
+const createIdPhoto = createId();
+const createUrlPhoto = createId();
+const descriptionIndex = createId();
+const createIdUser = createId();
 
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
@@ -58,35 +72,26 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
+
 // коментарии
 
-const comment = () => {
-  const randomNameIndex = getRandomInteger(0, NAMES.length - 1);
-  const randomMessageIndex = getRandomInteger(0, MESSAGES.length - 1);
-  id ++;
+const comment = () => ({
+  id: createIdUser(),
+  avatar: `img/avatar-${getRandomInteger(MIN_NUMBER_AVATARS, MAX_NUMBER_AVATARS)}.svg`,
+  message: getRandomArrayElement(MESSAGES),
+  name: getRandomArrayElement(NAMES),
+});
 
-  return {
-    id: id,
-    avatar: 'img/avatar-' + getRandomInteger(1, 6),
-    message: MESSAGES[randomMessageIndex],
-    name: NAMES[randomNameIndex],
-  };
-};
+const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-//Фотографии
+const createPhotoPost = () => ({
+  id: createIdPhoto(),
+  url: `photos/${createUrlPhoto()}.jpg`,
+  description:  PHOTOS_NAMES[descriptionIndex() - 1],
+  likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
+  comments:  Array.from({length:getRandomInteger(0, MAX_COMMENTS)}, comment)
+});
 
-const photo = () => {
+const similarPhoto = Array.from({length: PHOTO_POSTS}, createPhotoPost);
 
-  photoId ++;
-
-  return {
-    id: photoId,
-    url: 'photos/' + photoId + '.jpg',
-    description: PHOTOS_NAMES[photoId - 1],
-    likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
-    comments: Array.from({length: (getRandomInteger(0, 30))}, comment),
-  };
-
-};
-
-const photos = Array.from({length: 25}, photo);
+console.log(similarPhoto);
