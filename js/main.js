@@ -72,8 +72,8 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
-
 // коментарии
+const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 const comment = () => ({
   id: createIdUser(),
@@ -81,8 +81,6 @@ const comment = () => ({
   message: getRandomArrayElement(MESSAGES),
   name: getRandomArrayElement(NAMES),
 });
-
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 const createPhotoPost = () => ({
   id: createIdPhoto(),
@@ -93,5 +91,3 @@ const createPhotoPost = () => ({
 });
 
 const similarPhoto = Array.from({length: PHOTO_POSTS}, createPhotoPost);
-
-console.log(similarPhoto);
