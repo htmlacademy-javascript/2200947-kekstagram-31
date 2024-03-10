@@ -1,4 +1,4 @@
-import {galleryPhoto} from './data'
+import {galleryPhoto} from './data';
 
 galleryPhoto();
 

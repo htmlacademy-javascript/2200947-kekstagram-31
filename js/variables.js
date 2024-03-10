@@ -49,10 +49,10 @@ const PHOTOS_NAMES = [
 ];
 
 const MIN_LIKES = 15; // минимальное количество лайков
-const MAX_LIKES = 200;  //максимальное количество лайков
-const PHOTO_POSTS = 25;  //количество фотографий
+const MAX_LIKES = 200; //максимальное количество лайков
+const PHOTO_POSTS = 25; //количество фотографий
 const MAX_COMMENTS = 30; //максимальное количество комментариев
-const MIN_NUMBER_AVATARS = 1;  //минимальный номер фото аватара
-const MAX_NUMBER_AVATARS = 6;  //максимальный номер фото аватара
+const MIN_NUMBER_AVATARS = 1; //минимальный номер фото аватара
+const MAX_NUMBER_AVATARS = 6; //максимальный номер фото аватара
 
 export {MESSAGES, NAMES, PHOTOS_NAMES, MIN_LIKES, MAX_LIKES, PHOTO_POSTS, MAX_COMMENTS, MIN_NUMBER_AVATARS, MAX_NUMBER_AVATARS};
